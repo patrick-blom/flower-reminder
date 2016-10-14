@@ -11,13 +11,13 @@
     <services>
         <service id="flower_reminder.application" class="Symfony\Component\Console\Application"/>
 
-        <service id="flower_reminder.commands.list_calender_command"
-                 class="FlowerReminder\Commands\ListCalendersCommand">
+        <service id="flower_reminder.commands.list_calendar_command"
+                 class="FlowerReminder\Commands\ListCalendarsCommand">
             <tag name="flower_reminder.command"/>
         </service>
 
-        <service id="flower_reminder.service.calender.list_calender_service"
-                 class="FlowerReminder\Services\Calender\ListCalendersService">
+        <service id="flower_reminder.service.calender.list_calendar_service"
+                 class="FlowerReminder\Services\Calendar\ListCalendarsService">
             <argument type="service" id="flower_reminder.client.google"/>
         </service>
 

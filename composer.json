@@ -2,7 +2,7 @@
   "name": "flower-reminder",
   "license": "MIT",
   "type": "project",
-  "description": "console application which adds random event to a given google calender e.g. surprise your women with flowers ",
+  "description": "console application which adds random event to a given google calendar e.g. surprise your women with flowers ",
   "autoload": {
     "psr-4": {
       "FlowerReminder\\": "src/"
