@@ -15,9 +15,18 @@
                  class="FlowerReminder\Commands\ListCalendarsCommand">
             <tag name="flower_reminder.command"/>
         </service>
+        <service id="flower_reminder.commands.create_calendar_dummy_event_command"
+                 class="FlowerReminder\Commands\CreateCalendarDummyEventCommand">
+            <tag name="flower_reminder.command"/>
+        </service>
 
         <service id="flower_reminder.service.calender.list_calendar_service"
                  class="FlowerReminder\Services\Calendar\ListCalendarsService">
+            <argument type="service" id="flower_reminder.client.google"/>
+        </service>
+
+        <service id="flower_reminder.service.calender.event_calendar_service"
+                 class="FlowerReminder\Services\Calendar\EventCalendarService">
             <argument type="service" id="flower_reminder.client.google"/>
         </service>
 

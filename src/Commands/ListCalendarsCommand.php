@@ -13,7 +13,7 @@ class ListCalendarsCommand extends Command
     protected function configure()
     {
         $this->setName('reminder:calendar:list')
-            ->setDescription('Get a list of all clandars');
+            ->setDescription('Get a list of all calendars');
     }
 
     /**
