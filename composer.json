@@ -1,0 +1,30 @@
+{
+  "name": "flower-reminder",
+  "license": "MIT",
+  "type": "project",
+  "description": "console application which adds random event to a given google calender e.g. surprise your women with flowers ",
+  "autoload": {
+    "psr-4": {
+      "FlowerReminder\\": "src/"
+    },
+    "exclude-from-classmap": [
+      "/tests/"
+    ]
+  },
+  "require": {
+    "php": ">=5.6",
+    "symfony/console": "@stable",
+    "symfony/config": "@stable",
+    "symfony/dependency-injection": "@stable",
+    "google/apiclient": "^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  },
+  "authors": [
+    {
+      "name": "Patrick Blom",
+      "email": "info@bl0m.de"
+    }
+  ]
+}

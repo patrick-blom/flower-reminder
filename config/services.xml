@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="parameter.xml"/>
+    </imports>
+
+    <services>
+        <service id="flower_reminder.application" class="Symfony\Component\Console\Application"/>
+
+        <service id="flower_reminder.commands.list_calender_command"
+                 class="FlowerReminder\Commands\ListCalendersCommand">
+            <tag name="flower_reminder.command"/>
+        </service>
+
+        <service id="flower_reminder.service.calender.list_calender_service"
+                 class="FlowerReminder\Services\Calender\ListCalendersService">
+            <argument type="service" id="flower_reminder.client.google"/>
+        </service>
+
+        <service id="flower_reminder.client.google" class="FlowerReminder\Services\ClientFactory\Google">
+            <argument type="string">%flower_reminder_config%</argument>
+        </service>
+
+    </services>
+</container>

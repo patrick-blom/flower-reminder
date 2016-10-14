@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+$container = \FlowerReminder\Container::Instance();
+
+$application = $container->get('flower_reminder.application');
+$application->run();
