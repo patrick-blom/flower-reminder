@@ -6,8 +6,8 @@
     <parameters>
         <parameter key="service_account_file">FlowerReminder-42856be7a777.json</parameter>
 
-        <parameter key="calendar_event_msg">Eva einen Strauß Blumen kaufen.</parameter>
-        <parameter key="calendar_event_msg_description">Die ist ein automatisch generierter Termin</parameter>
+        <parameter key="calendar_event_msg">Buy your babe some flowers</parameter>
+        <parameter key="calendar_event_msg_description">this is an generated appointment</parameter>
         <parameter key="calendar_event_starttime">10:00:00</parameter>
         <parameter key="calendar_event_endtime">11:00:00</parameter>
         <parameter key="calendar_event_reminder_mail">blomsmail@gmail.com</parameter>
