@@ -17,7 +17,7 @@ The simple way to surprise your woman using the symfony console
 
 ###Prepare Google Calendar
 1. create an new calender
-2. share the new calender with the generated service account id email adress
+2. share the new calender with the generated service account id email address
 
 ###Prepare the Flower Reminder and edit the parameter.xml
 1. `service_account_file` : The name of the key-file.json
