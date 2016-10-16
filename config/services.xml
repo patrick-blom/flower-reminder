@@ -19,6 +19,10 @@
                  class="FlowerReminder\Commands\CreateCalendarDummyEventCommand">
             <tag name="flower_reminder.command"/>
         </service>
+        <service id="flower_reminder.commands.create_random_calendar_events_command"
+                 class="FlowerReminder\Commands\CreateRandomCalendarEventsCommand">
+            <tag name="flower_reminder.command"/>
+        </service>
 
         <service id="flower_reminder.service.calender.list_calendar_service"
                  class="FlowerReminder\Services\Calendar\ListCalendarsService">
@@ -31,7 +35,7 @@
         </service>
 
         <service id="flower_reminder.client.google" class="FlowerReminder\Services\ClientFactory\Google">
-            <argument type="string">%flower_reminder_config%</argument>
+            <argument type="string">%service_account_file%</argument>
         </service>
 
     </services>

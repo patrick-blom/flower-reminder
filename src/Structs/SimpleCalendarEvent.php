@@ -6,5 +6,5 @@ class SimpleCalendarEvent extends Base
 {
     public $calendarId;
 
-    public $appointmentString;
+    public $eventString;
 }

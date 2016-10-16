@@ -36,7 +36,7 @@ class CreateCalendarDummyEventCommand extends Command
         $dummyEvent = new SimpleCalendarEvent(
             [
                 'calendarId' => $calendarId,
-                'appointmentString' => 'Buy your women some flowers on November 3rd 10am-10:25am'
+                'eventString' => 'Buy your women some flowers on November 3rd 10am-10:25am'
             ]
         );
 
