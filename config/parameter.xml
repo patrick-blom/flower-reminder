@@ -5,6 +5,13 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="service_account_file">FlowerReminder-86ee7f481050.json</parameter>
-        <parameter key="calendar_msg">Eva einen Strauß Blumen kaufen.</parameter>
+
+        <parameter key="calendar_event_msg">Eva einen Strauß Blumen kaufen.</parameter>
+        <parameter key="calendar_event_msg_description">Die ist ein automatisch generierter Termin</parameter>
+        <parameter key="calendar_event_starttime">10:00:00</parameter>
+        <parameter key="calendar_event_endtime">11:00:00</parameter>
+        <parameter key="calendar_event_reminder_mail">blomsmail@gmail.com</parameter>
+        <!-- 24h * 60m = 1440 -->
+        <parameter key="calendar_event_reminder_in_minutes">1440</parameter>
     </parameters>
 </container>

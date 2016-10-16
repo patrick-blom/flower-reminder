@@ -26,7 +26,6 @@ class RandomizingReminder
      */
     public function generateReminderDates()
     {
-
         $dates = [];
 
         /** @var \DateTime $nextDate */
@@ -38,10 +37,20 @@ class RandomizingReminder
             $endDate->modify('+' . $this->reminderConfig->intervalInMonths . ' month');
 
             for ($i = 1; $i <= $this->reminderConfig->remindingsPerInterval; $i++) {
+
                 $randomTimeStamp = mt_rand($nextDate->getTimestamp(), $endDate->getTimestamp());
-                $reminderDate = new \DateTime();
-                $reminderDate->setTimestamp($randomTimeStamp);
-                array_push($dates, $reminderDate);
+                if (
+                    !$this->reminderConfig->multipleRemindingsPerMonth &&
+                    count($dates) > 0 &&
+                    (date('m', $randomTimeStamp) == date('m', $dates[(count($dates) - 1)]->getTimestamp()))
+                ) {
+                    $i--;
+                } else {
+                    $reminderDate = new \DateTime();
+                    $reminderDate->setTimestamp($randomTimeStamp);
+                    array_push($dates, $reminderDate);
+                }
+
             }
 
             $nextDate = $endDate;
@@ -49,8 +58,26 @@ class RandomizingReminder
 
         } while ($loops <= $this->reminderConfig->intervals);
 
-        return $dates;
+        return $this->sortByTimestamp($dates);
     }
 
+    /**
+     * @param $dates
+     * @return mixed
+     */
+    private function sortByTimestamp($dates)
+    {
+        usort($dates,
+            function ($date_a, $date_b) {
+                if ($date_a->getTimestamp() == $date_b->getTimestamp()) {
+                    return 0;
+                }
+
+                return ($date_a->getTimestamp() < $date_b->getTimestamp()) ? -1 : 1;
+            }
+        );
+
+        return $dates;
+    }
 
 }

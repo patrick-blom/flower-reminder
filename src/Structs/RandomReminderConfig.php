@@ -24,4 +24,8 @@ class RandomReminderConfig extends Base
      */
     public $intervals;
 
+    /**
+     * @var boolean
+     */
+    public $multipleRemindingsPerMonth;
 }

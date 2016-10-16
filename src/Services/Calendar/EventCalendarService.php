@@ -44,6 +44,37 @@ class EventCalendarService
      */
     public function addCalendarEvent(AdvancedCalendarEvent $event)
     {
-        return true;
+        $calendarService = new \Google_Service_Calendar($this->clientFactory->getClient());
+
+        $googleEvent = new \Google_Service_Calendar_Event(
+            [
+                'summary' => $event->eventName,
+                'description' => $event->eventDescription,
+                'start' => [
+                    'dateTime' => $event->date->format('Y-m-d') . 'T' . $event->startTime,
+                    'timeZone' => $event->date->getTimezone()->getName(),
+                ],
+                'end' => [
+                    'dateTime' => $event->date->format('Y-m-d') . 'T' . $event->endTime,
+                    'timeZone' => $event->date->getTimezone()->getName(),
+                ],
+                'attendees' => [
+                    ['email' => $event->reminderEmail]
+                ],
+                'reminders' => [
+                    'useDefault' => false,
+                    'overrides' => [
+                        ['method' => 'email', 'minutes' => $event->reminderTime],
+                    ],
+                ],
+            ]
+        );
+
+        /** @var \Google_Service_Calendar_Event $created */
+        $created = $calendarService->events->insert($event->calendarId, $googleEvent);
+
+        if ($created) {
+            return $created->getId();
+        }
     }
 }

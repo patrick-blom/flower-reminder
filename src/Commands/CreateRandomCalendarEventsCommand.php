@@ -7,6 +7,7 @@ use FlowerReminder\Services\RandomizingReminder;
 use FlowerReminder\Structs\AdvancedCalendarEvent;
 use FlowerReminder\Structs\RandomReminderConfig;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -51,6 +52,13 @@ class CreateRandomCalendarEventsCommand extends Command
                 InputOption::VALUE_OPTIONAL,
                 'The loop of intervals (default: 4)',
                 4
+            )
+            ->addOption(
+                'multiple-reminders-per-month',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Allow Multiple remindings in a single month (default: 0)',
+                0
             );
     }
 
@@ -69,7 +77,8 @@ class CreateRandomCalendarEventsCommand extends Command
                 'startDate' => \DateTime::createFromFormat('Y-m-d H:i:s', $input->getOption('startdate')),
                 'intervalInMonths' => $input->getOption('interval-in-months'),
                 'remindingsPerInterval' => $input->getOption('remindings-per-intervall'),
-                'intervals' => $input->getOption('intervals')
+                'intervals' => $input->getOption('intervals'),
+                'multipleRemindingsPerMonth' => boolval($input->getOption('multiple-reminders-per-month'))
             ]
         );
 
@@ -83,22 +92,36 @@ class CreateRandomCalendarEventsCommand extends Command
             $dates = $reminderService->generateReminderDates();
             $randomEvents = [];
 
+            $progressBar = new ProgressBar($output,count($dates));
+            $progressBar->start();
+
             /** @var \DateTime $date */
             foreach ($dates as $date) {
                 $newEvent = new AdvancedCalendarEvent(
                     [
                         'calendarId' => $calendarId,
                         'date' => $date,
-                        'eventName' => $container->getParameter('calendar_msg')
+                        'startTime' => $container->getParameter('calendar_event_starttime'),
+                        'endTime' => $container->getParameter('calendar_event_endtime'),
+                        'eventName' => $container->getParameter('calendar_event_msg'),
+                        'eventDescription' => $container->getParameter('calendar_event_msg_description'),
+                        'reminderEmail' => $container->getParameter('calendar_event_reminder_mail'),
+                        'reminderTime' => $container->getParameter('calendar_event_reminder_in_minutes'),
                     ]
                 );
 
+                $progressBar->advance();
                 if ($eventId = $calendarEventService->addCalendarEvent($newEvent)) {
                     array_push($randomEvents, [
                         $eventId, $date->format('Y-m-d')
                     ]);
                 }
             }
+
+            $progressBar->finish();
+
+            $io->writeln('');
+            $io->note('Listing events');
 
             $io->table(
                 ['Event Id', 'Calendar Date'],
