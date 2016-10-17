@@ -1,6 +1,12 @@
 #Random Flower Reminder
 The simple way to surprise your woman using the symfony console
 
+Flower Reminder is a useful symfony command line tool to create random google calendar events which reminds you to 
+buy your woman some flowers. 
+
+E.g if you want to surprise you women two times in three months and that four times in a row, Flower Reminder is your 
+friend.
+
 ##Requirements
 - a google developer account
 - a google calendar
