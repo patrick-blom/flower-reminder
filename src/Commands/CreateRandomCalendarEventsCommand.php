@@ -36,11 +36,11 @@ class CreateRandomCalendarEventsCommand extends Command
                 'interval-in-months',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'The count of months for one intervall (defalut: 3)',
+                'The count of months for one interval (defalut: 3)',
                 3
             )
             ->addOption(
-                'remindings-per-intervall',
+                'remindings-per-interval',
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The count of remindings per interval (default: 2)',
@@ -76,12 +76,11 @@ class CreateRandomCalendarEventsCommand extends Command
             [
                 'startDate' => \DateTime::createFromFormat('Y-m-d H:i:s', $input->getOption('startdate')),
                 'intervalInMonths' => $input->getOption('interval-in-months'),
-                'remindingsPerInterval' => $input->getOption('remindings-per-intervall'),
+                'remindingsPerInterval' => $input->getOption('remindings-per-interval'),
                 'intervals' => $input->getOption('intervals'),
                 'multipleRemindingsPerMonth' => boolval($input->getOption('multiple-reminders-per-month'))
             ]
         );
-
         $reminderService = new RandomizingReminder($reminderConfig);
 
         $container = Container::Instance();

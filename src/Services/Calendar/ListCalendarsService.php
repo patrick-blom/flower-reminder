@@ -2,6 +2,7 @@
 
 namespace FlowerReminder\Services\Calendar;
 
+use FlowerReminder\Services\CalendarServiceFactory;
 use FlowerReminder\Services\ClientFactoryInterface;
 
 class ListCalendarsService
@@ -9,15 +10,22 @@ class ListCalendarsService
     /**
      * @var ClientFactoryInterface
      */
-    private $client;
+    private $clientFactory;
 
     /**
-     * ListCalendersService constructor.
-     * @param ClientFactoryInterface $client
+     * @var CalendarServiceFactory
      */
-    public function __construct(ClientFactoryInterface $client)
+    private $calendarServiceFactory;
+
+    /**
+     * ListCalendarsService constructor.
+     * @param ClientFactoryInterface $clientFactory
+     * @param CalendarServiceFactory $calendarServiceFactory
+     */
+    public function __construct(ClientFactoryInterface $clientFactory, CalendarServiceFactory $calendarServiceFactory)
     {
-        $this->client = $client;
+        $this->clientFactory = $clientFactory;
+        $this->calendarServiceFactory = $calendarServiceFactory;
     }
 
     /**
@@ -25,7 +33,12 @@ class ListCalendarsService
      */
     public function getCalendarList()
     {
-        $calendarService = new \Google_Service_Calendar($this->client->getClient());
+        $calendarService = $this->calendarServiceFactory->get(
+            \Google_Service_Calendar::class,
+            [
+                $this->clientFactory->getClient()
+            ]
+        );
 
         /** @var \Google_Service_Calendar_CalendarList $calendarList */
         $calendarList = $calendarService->calendarList->listCalendarList();

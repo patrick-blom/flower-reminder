@@ -2,6 +2,7 @@
 
 namespace FlowerReminder\Services\Calendar;
 
+use FlowerReminder\Services\CalendarServiceFactory;
 use FlowerReminder\Services\ClientFactoryInterface;
 use FlowerReminder\Structs\AdvancedCalendarEvent;
 use FlowerReminder\Structs\SimpleCalendarEvent;
@@ -14,12 +15,18 @@ class EventCalendarService
     private $clientFactory;
 
     /**
+     * @var CalendarServiceFactory
+     */
+    private $calendarServiceFactory;
+
+    /**
      * EventCalendarService constructor.
      * @param ClientFactoryInterface $clientFactory
      */
-    public function __construct(ClientFactoryInterface $clientFactory)
+    public function __construct(ClientFactoryInterface $clientFactory, CalendarServiceFactory $calendarServiceFactory)
     {
         $this->clientFactory = $clientFactory;
+        $this->calendarServiceFactory = $calendarServiceFactory;
     }
 
     /**
@@ -28,7 +35,12 @@ class EventCalendarService
      */
     public function addSimpleCalendarEvent(SimpleCalendarEvent $event)
     {
-        $calendarService = new \Google_Service_Calendar($this->clientFactory->getClient());
+        $calendarService = $this->calendarServiceFactory->get(
+            \Google_Service_Calendar::class,
+            [
+                $this->clientFactory->getClient()
+            ]
+        );
 
         /** @var \Google_Service_Calendar_Event $created */
         $created = $calendarService->events->quickAdd($event->calendarId, $event->eventString);
@@ -44,29 +56,37 @@ class EventCalendarService
      */
     public function addCalendarEvent(AdvancedCalendarEvent $event)
     {
-        $calendarService = new \Google_Service_Calendar($this->clientFactory->getClient());
-
-        $googleEvent = new \Google_Service_Calendar_Event(
+        $calendarService = $this->calendarServiceFactory->get(
+            \Google_Service_Calendar::class,
             [
-                'summary' => $event->eventName,
-                'description' => $event->eventDescription,
-                'start' => [
-                    'dateTime' => $event->date->format('Y-m-d') . 'T' . $event->startTime,
-                    'timeZone' => $event->date->getTimezone()->getName(),
-                ],
-                'end' => [
-                    'dateTime' => $event->date->format('Y-m-d') . 'T' . $event->endTime,
-                    'timeZone' => $event->date->getTimezone()->getName(),
-                ],
-                'attendees' => [
-                    ['email' => $event->reminderEmail]
-                ],
-                'reminders' => [
-                    'useDefault' => false,
-                    'overrides' => [
-                        ['method' => 'email', 'minutes' => $event->reminderTime],
+                $this->clientFactory->getClient()
+            ]
+        );
+
+        $googleEvent = $this->calendarServiceFactory->get(
+            \Google_Service_Calendar_Event::class,
+            [
+                [
+                    'summary' => $event->eventName,
+                    'description' => $event->eventDescription,
+                    'start' => [
+                        'dateTime' => $event->date->format('Y-m-d') . 'T' . $event->startTime,
+                        'timeZone' => $event->date->getTimezone()->getName(),
                     ],
-                ],
+                    'end' => [
+                        'dateTime' => $event->date->format('Y-m-d') . 'T' . $event->endTime,
+                        'timeZone' => $event->date->getTimezone()->getName(),
+                    ],
+                    'attendees' => [
+                        ['email' => $event->reminderEmail]
+                    ],
+                    'reminders' => [
+                        'useDefault' => false,
+                        'overrides' => [
+                            ['method' => 'email', 'minutes' => $event->reminderTime],
+                        ],
+                    ],
+                ]
             ]
         );
 

@@ -26,15 +26,21 @@
 
         <service id="flower_reminder.service.calender.list_calendar_service"
                  class="FlowerReminder\Services\Calendar\ListCalendarsService">
-            <argument type="service" id="flower_reminder.client.google"/>
+            <argument type="service" id="flower_reminder.services.client_factory.google"/>
+            <argument type="service" id="flower_reminder.services.calendar_service_factory.google"/>
         </service>
 
         <service id="flower_reminder.service.calender.event_calendar_service"
                  class="FlowerReminder\Services\Calendar\EventCalendarService">
-            <argument type="service" id="flower_reminder.client.google"/>
+            <argument type="service" id="flower_reminder.services.client_factory.google"/>
+            <argument type="service" id="flower_reminder.services.calendar_service_factory.google"/>
         </service>
 
-        <service id="flower_reminder.client.google" class="FlowerReminder\Services\ClientFactory\Google">
+        <service id="flower_reminder.services.calendar_service_factory.google"
+                 class="FlowerReminder\Services\CalendarServiceFactory\Google"/>
+
+        <service id="flower_reminder.services.client_factory.google"
+                 class="FlowerReminder\Services\ClientFactory\Google">
             <argument type="string">%service_account_file%</argument>
         </service>
 

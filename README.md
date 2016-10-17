@@ -81,8 +81,8 @@ You can use the optional commands to modify the default behavior:
 ```
 Options:
       --startdate[=STARTDATE]                                        The start date for the random event generation (default: now) [default: "2016-10-16 22:34:40"]
-      --interval-in-months[=INTERVAL-IN-MONTHS]                      The count of months for one intervall (defalut: 3) [default: 3]
-      --remindings-per-intervall[=REMINDINGS-PER-INTERVALL]          The count of remindings per interval (default: 2) [default: 2]
+      --interval-in-months[=INTERVAL-IN-MONTHS]                      The count of months for one interval (defalut: 3) [default: 3]
+      --remindings-per-interval[=REMINDINGS-PER-INTERVALL]           The count of remindings per interval (default: 2) [default: 2]
       --intervals[=INTERVALS]                                        The loop of intervals (default: 4) [default: 4]
       --multiple-reminders-per-month[=MULTIPLE-REMINDERS-PER-MONTH]  Allow Multiple remindings in a single month (default: 0) [default: 0]
 ```
