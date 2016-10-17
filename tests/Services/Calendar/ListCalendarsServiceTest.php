@@ -28,10 +28,14 @@ class ListCalendarsServiceTest extends PHPUnit_Framework_TestCase
             ->getMock();
     }
 
-
     public function testCanCreateClass()
     {
         $eventService = new ListCalendarsService($this->clientFactory, $this->serviceFactory);
         $this->assertInstanceOf('FlowerReminder\Services\Calendar\ListCalendarsService', $eventService);
+    }
+
+    public function testCanGetCalendarList()
+    {
+        $this->markTestIncomplete('Todo: implement test logic for ' . __METHOD__);
     }
 }

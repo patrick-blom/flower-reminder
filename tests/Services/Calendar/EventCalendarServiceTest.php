@@ -33,4 +33,14 @@ class EventCalendarServiceTest extends PHPUnit_Framework_TestCase
         $eventService = new EventCalendarService($this->clientFactory, $this->serviceFactory);
         $this->assertInstanceOf('FlowerReminder\Services\Calendar\EventCalendarService', $eventService);
     }
+
+    public function testCanAddSimpleCalendarEvent()
+    {
+        $this->markTestIncomplete('Todo: implement test logic for ' . __METHOD__);
+    }
+
+    public function testCanAddCalendarEvent()
+    {
+        $this->markTestIncomplete('Todo: implement test logic for ' . __METHOD__);
+    }
 }
