@@ -86,3 +86,5 @@ Options:
       --intervals[=INTERVALS]                                        The loop of intervals (default: 4) [default: 4]
       --multiple-reminders-per-month[=MULTIPLE-REMINDERS-PER-MONTH]  Allow Multiple remindings in a single month (default: 0) [default: 0]
 ```
+##Test
+You can test the Flower Reminder using `php vendor/bin/phpunit tests/`
