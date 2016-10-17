@@ -15,6 +15,10 @@ class Container
      */
     private static $instance = null;
 
+    private function __construct()
+    {
+    }
+
     /**
      * @return ContainerInterface
      */
@@ -41,10 +45,6 @@ class Container
         $container->compile();
 
         return $container;
-    }
-
-    private function __construct()
-    {
     }
 
     private function __clone()

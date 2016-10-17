@@ -21,11 +21,11 @@ class Google implements ClientFactoryInterface
     }
 
     /**
-     * @return mixed
+     * @return \Google_Client
      */
     public function getClient()
     {
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__.'/../../../config/'.$this->configFile);
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/../../../config/' . $this->configFile);
         $client = new \Google_Client();
         $client->useApplicationDefaultCredentials();
         $client->addScope(\Google_Service_Calendar::CALENDAR);

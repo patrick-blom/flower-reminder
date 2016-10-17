@@ -92,7 +92,7 @@ class CreateRandomCalendarEventsCommand extends Command
             $dates = $reminderService->generateReminderDates();
             $randomEvents = [];
 
-            $progressBar = new ProgressBar($output,count($dates));
+            $progressBar = new ProgressBar($output, count($dates));
             $progressBar->start();
 
             /** @var \DateTime $date */
