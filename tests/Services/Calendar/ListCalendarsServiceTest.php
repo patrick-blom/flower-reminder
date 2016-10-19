@@ -33,9 +33,4 @@ class ListCalendarsServiceTest extends PHPUnit_Framework_TestCase
         $eventService = new ListCalendarsService($this->clientFactory, $this->serviceFactory);
         $this->assertInstanceOf('FlowerReminder\Services\Calendar\ListCalendarsService', $eventService);
     }
-
-    public function testCanGetCalendarList()
-    {
-        $this->markTestIncomplete('Todo: implement test logic for ' . __METHOD__);
-    }
 }
