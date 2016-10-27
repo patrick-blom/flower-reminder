@@ -42,6 +42,7 @@ class RandomizingReminder
                 if (
                     !$this->reminderConfig->multipleRemindingsPerMonth &&
                     count($dates) > 0 &&
+                    $this->reminderConfig->remindingsPerInterval <= $this->reminderConfig->intervalInMonths &&
                     (date('m', $randomTimeStamp) == date('m', $dates[(count($dates) - 1)]->getTimestamp()))
                 ) {
                     $i--;
