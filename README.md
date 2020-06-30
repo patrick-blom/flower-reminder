@@ -1,4 +1,4 @@
-#Random Flower Reminder
+# Random Flower Reminder
 The simple way to surprise your woman using the symfony console
 
 Flower Reminder is a useful symfony command line tool to create random google calendar events which reminds you to 
@@ -7,12 +7,12 @@ buy your woman some flowers.
 E.g if you want to surprise you women two times in three months and that four times in a row, Flower Reminder is your 
 friend.
 
-##Requirements
+## Requirements
 - a google developer account
 - a google calendar
 
-##Installation
-###Prepare Google Dev
+## Installation
+### Prepare Google Dev
 1. goto `https://console.developers.google.com`
 2. create a new project
 3. activate the Google Calendar API
@@ -21,11 +21,11 @@ friend.
 6. enable G Suite Domain-wide Delegation
 7. save the new key-file.json to `flower-reminder/config/`
 
-###Prepare Google Calendar
+### Prepare Google Calendar
 1. create an new calender
 2. share the new calender with the generated service account id email address
 
-###Prepare the Flower Reminder and edit the parameter.xml
+### Prepare the Flower Reminder and edit the parameter.xml
 1. `service_account_file` : The name of the key-file.json
 2. `calendar_event_msg` : The event name which is displayed in the calendar
 3. `calendar_event_msg_description` : The event description
@@ -34,9 +34,10 @@ friend.
 6. `calendar_event_reminder_mail` : The reminder e-mail address
 6. `calendar_event_reminder_in_minutes` : The time the event will be announced
 
-##Usage
-###The list command
+## Usage
+### The list command
 Use the list command to get the calendar id of the prepared Google Calendar
+
 ```
  php bin/application reminder:calendar:list
  ----------------- ------------------------------------------------------ 
@@ -45,7 +46,8 @@ Use the list command to get the calendar id of the prepared Google Calendar
   Flower Reminder   averylongidgenratedbygoogle@group.calendar.google.com  
  ----------------- ------------------------------------------------------
 ```
-###The dummy command
+
+### The dummy command
 Use the dummy command to verify the function of the flower reminder and the communication with google.
 It will generate an calendar event on November 3rd 10am-10:25am
 ```
@@ -53,7 +55,7 @@ It will generate an calendar event on November 3rd 10am-10:25am
  
  [OK] Event with id 94hsajdfjksdfkfggnvk created     
 ```
-###The random command
+### The random command
 Use the random command to create the random events in your google calendar
 ```
  php bin/application reminder:calendar:create:random averylongidgenratedbygoogle@group.calendar.google.com
@@ -92,5 +94,5 @@ Options:
       --intervals[=INTERVALS]                                        The loop of intervals (default: 4) [default: 4]
       --multiple-reminders-per-month[=MULTIPLE-REMINDERS-PER-MONTH]  Allow Multiple remindings in a single month (default: 0) [default: 0]
 ```
-##Test
+## Test
 You can test the Flower Reminder using `php vendor/bin/phpunit tests/`
