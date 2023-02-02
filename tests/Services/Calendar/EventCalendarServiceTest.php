@@ -1,17 +1,21 @@
 <?php
+declare(strict_types=1);
 
+namespace FlowerReminderTests\Services\Calendar;
 
+use Google_Service_Calendar_Event;
+use PHPUnit\Framework\TestCase;
 use FlowerReminder\Services\Calendar\EventCalendarService;
 use FlowerReminder\Services\ClientFactory\Google;
 
-class EventCalendarServiceTest extends PHPUnit_Framework_TestCase
+class EventCalendarServiceTest extends TestCase
 {
     /**
      * @var Google
      */
     private $clientFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clientFactory = $this->getMockBuilder('FlowerReminder\Services\ClientFactory\Google')
             ->disableOriginalConstructor()

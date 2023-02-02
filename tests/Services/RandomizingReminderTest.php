@@ -1,9 +1,13 @@
 <?php
+declare(strict_types=1);
 
+namespace FlowerReminderTests\Services;
+
+use PHPUnit\Framework\TestCase;
 use \FlowerReminder\Services\RandomizingReminder;
 use  \FlowerReminder\Structs\RandomReminderConfig;
 
-class RandomizingReminderTest extends PHPUnit_Framework_TestCase
+class RandomizingReminderTest extends TestCase
 {
     public function testCanCreateInstance()
     {
@@ -30,7 +34,7 @@ class RandomizingReminderTest extends PHPUnit_Framework_TestCase
 
         $result = $rr->generateReminderDates();
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
         $this->assertInstanceOf('\DateTime', $result[0]);
         $this->assertCount(1, $result);
 
@@ -61,7 +65,7 @@ class RandomizingReminderTest extends PHPUnit_Framework_TestCase
 
         $result = $rr->generateReminderDates();
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
         $this->assertCount(2, $result);
 
         $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', '2016-02-01 00:00:01');
@@ -93,7 +97,7 @@ class RandomizingReminderTest extends PHPUnit_Framework_TestCase
 
         $result = $rr->generateReminderDates();
 
-        $this->assertInternalType('array', $result);
+        $this->assertIsArray($result);
         $this->assertCount(2, $result);
 
         $matrix = [

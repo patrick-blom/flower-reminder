@@ -1,7 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
+namespace FlowerReminderTests;
 
-class ContainerTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ContainerTest extends TestCase
 {
     public function testCanCreateContainer()
     {

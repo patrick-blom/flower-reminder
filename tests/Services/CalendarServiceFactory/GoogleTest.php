@@ -1,7 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
+namespace FlowerReminderTests\Services\CalendarServiceFactory;
 
-class GoogleTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class GoogleTest extends TestCase
 {
 
     public function testGetGoogleServiceCalendar()

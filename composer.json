@@ -1,5 +1,5 @@
 {
-  "name": "flower-reminder",
+  "name": "patrick-blom/flower-reminder",
   "license": "MIT",
   "type": "project",
   "description": "console application which adds random event to a given google calendar e.g. surprise your women with flowers ",
@@ -11,8 +11,13 @@
       "/tests/"
     ]
   },
+  "autoload-dev": {
+    "psr-4": {
+      "FlowerReminderTests\\": "tests/"
+    }
+  },
   "require": {
-    "php": ">=5.6",
+    "php": ">=8.0",
     "symfony/console": "@stable",
     "symfony/config": "@stable",
     "symfony/dependency-injection": "@stable",
@@ -24,7 +29,7 @@
   "authors": [
     {
       "name": "Patrick Blom",
-      "email": "info@bl0m.de"
+      "email": "info@patrick-blom.de"
     }
   ]
 }

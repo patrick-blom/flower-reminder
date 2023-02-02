@@ -12,35 +12,35 @@
         <service id="flower_reminder.application" class="Symfony\Component\Console\Application"/>
 
         <service id="flower_reminder.commands.list_calendar_command"
-                 class="FlowerReminder\Commands\ListCalendarsCommand">
+                 class="FlowerReminder\Commands\ListCalendarsCommand" public="true">
             <tag name="flower_reminder.command"/>
         </service>
         <service id="flower_reminder.commands.create_calendar_dummy_event_command"
-                 class="FlowerReminder\Commands\CreateCalendarDummyEventCommand">
+                 class="FlowerReminder\Commands\CreateCalendarDummyEventCommand" public="true">
             <tag name="flower_reminder.command"/>
         </service>
         <service id="flower_reminder.commands.create_random_calendar_events_command"
-                 class="FlowerReminder\Commands\CreateRandomCalendarEventsCommand">
+                 class="FlowerReminder\Commands\CreateRandomCalendarEventsCommand" public="true">
             <tag name="flower_reminder.command"/>
         </service>
 
         <service id="flower_reminder.service.calender.list_calendar_service"
-                 class="FlowerReminder\Services\Calendar\ListCalendarsService">
+                 class="FlowerReminder\Services\Calendar\ListCalendarsService" public="true">
             <argument type="service" id="flower_reminder.services.client_factory.google"/>
             <argument type="service" id="flower_reminder.services.calendar_service_factory.google"/>
         </service>
 
         <service id="flower_reminder.service.calender.event_calendar_service"
-                 class="FlowerReminder\Services\Calendar\EventCalendarService">
+                 class="FlowerReminder\Services\Calendar\EventCalendarService" public="true">
             <argument type="service" id="flower_reminder.services.client_factory.google"/>
             <argument type="service" id="flower_reminder.services.calendar_service_factory.google"/>
         </service>
 
         <service id="flower_reminder.services.calendar_service_factory.google"
-                 class="FlowerReminder\Services\CalendarServiceFactory\Google"/>
+                 class="FlowerReminder\Services\CalendarServiceFactory\Google" public="true"/>
 
         <service id="flower_reminder.services.client_factory.google"
-                 class="FlowerReminder\Services\ClientFactory\Google">
+                 class="FlowerReminder\Services\ClientFactory\Google" public="true">
             <argument type="string">%service_account_file%</argument>
         </service>
 
