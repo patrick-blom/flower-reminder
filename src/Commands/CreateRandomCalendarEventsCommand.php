@@ -43,7 +43,7 @@ class CreateRandomCalendarEventsCommand extends Command
                 'remindings-per-interval',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'The count of remindings per interval (default: 2)',
+                'The count of reminder per interval (default: 2)',
                 2
             )
             ->addOption(
@@ -57,7 +57,7 @@ class CreateRandomCalendarEventsCommand extends Command
                 'multiple-reminders-per-month',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Allow Multiple remindings in a single month (default: 0)',
+                'Allow multiple reminder in a single month (default: 0)',
                 0
             );
     }
