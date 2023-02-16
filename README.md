@@ -19,15 +19,24 @@ Things you need to use Flower Reminder.
 1. Goto `https://console.developers.google.com` and login with your credentials 
 2. Create a new project
 3. Activate the Google Calendar API
-4. Create a new service account
-5. Enable key generation
-6. Enable G Suite Domain-wide Delegation
-7. Save the new key-file.json to `flower-reminder/config/`
+4. Select the API and create new credentials for it (Select Application data and that you don't use GCE, GKE, etc)
+5. Add a name for the service account
+6. Copy the email address which will be generated below the service id
+7. Add the role owner to the service account
+8. Open the new generated service account by clicking on the email
+9. Got to the keys tab and generate a new json key
+10. Save the new key-file.json to `flower-reminder/config/`
+
+The most difficult part is now done. In the next step we connect the new developer project with a new calendar.
 
 ### Prepare Google Calendar
 1. Goto `https://calendar.google.com/` and login with your credentials 
 2. Goto to the Settings Menu and create a new calendar (I called mine Flower Reminder)
-3. Share the new calendar with the generated service account id email address and assign the privileges to edit events  
+3. Share the new calendar with the generated service account id email address you copied in step 6 of the Google developer account creation and assign the privileges to edit events
+
+With that done, every application which has the key-file.json can now create entries in your new shared calendar. Last
+not least we will configure some details in Flower Reminder so that the new calendar entries look and behave like we 
+expected them to do.
 
 ### Prepare the Flower Reminder by editing the parameter.xml
 1. `service_account_file` : The name of the key-file.json
@@ -37,6 +46,8 @@ Things you need to use Flower Reminder.
 5. `calendar_event_endtime` : The end time of the event hh:mm:ss
 6. `calendar_event_reminder_mail` : The reminder e-mail address
 7. `calendar_event_reminder_in_minutes` : The time the event will be announced
+
+That's it. The configuration is done and Flower Reminder is ready to go.
 
 ## Usage
 ### The list command
